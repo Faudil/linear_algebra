@@ -1,5 +1,5 @@
 #[cfg(test)]
-extern crate neural_network;
+extern crate linear_algebra;
 
 mod tests {
     #[test]

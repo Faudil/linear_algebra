@@ -1,8 +1,8 @@
 #[cfg(test)]
-extern crate neural_network;
+extern crate linear_algebra;
 
 mod matrix_tests {
-    use neural_network::math::matrix::Matrix;
+    use linear_algebra::matrix::Matrix;
     #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
@@ -27,7 +27,7 @@ mod matrix_tests {
 
     #[test]
     fn simple_multiplication() {
-        let mut m = Matrix::new_init(2, 2, vec![1.0, 1.0, 0.0, 1.0]);
+        let m = Matrix::new_init(2, 2, vec![1.0, 1.0, 0.0, 1.0]);
         let n = Matrix::new_init(2, 2, vec![2.0, 1.0, 1.0, 1.0]);
         let r = Matrix::new_init(2, 2, vec![3.0, 2.0, 1.0, 1.0]);
         let t = m * n;

@@ -35,7 +35,7 @@ impl Mul for Matrix {
     type Output = Self;
 
     fn mul(self, other: Self) -> Self {
-        let mut offset = 0;
+        let mut offset;
         let mut res = Matrix::new(self._height, other._width);
         for i in 0..self._height {
             offset = i * res._height;
@@ -83,8 +83,8 @@ impl Matrix {
     }
 
     pub fn sub(&mut self, other: &Matrix) {
-        let mut offset = 0;
-        let mut index = 0;
+        let mut offset;
+        let mut index;
         for y in 0..self._height {
             offset = y * self._height;
             for x in 0..self._width {
