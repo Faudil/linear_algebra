@@ -1,2 +1,2 @@
 # linear_algebra
-my own linear algebra library
+Linear algebra library implementation in Rust
