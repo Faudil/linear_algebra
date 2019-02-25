@@ -42,4 +42,13 @@ mod matrix_tests {
         let a = Matrix::new_init(2, 2, vec![2.0, 3.0, 5.0, 7.25]);
         assert_eq!(a, a.clone());
     }
+
+    #[test]
+    fn simple_transpose() {
+        let a = Matrix::new_init(2, 2, vec![2.0, 3.0,
+                                                                      5.0, 7.25]);
+        let ta = Matrix::new_init(2, 2, vec![2.0, 5.0,
+                                                                       3.0, 7.25]);
+        assert_eq!(a.transpose(), ta);
+    }
 }

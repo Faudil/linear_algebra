@@ -5,6 +5,7 @@ use std::cmp::{PartialEq};
 pub struct Matrix {
     _height: usize,
     _width: usize,
+    _bound: usize,
     _value: Vec<f64>
 }
 
@@ -72,11 +73,11 @@ impl Mul<Matrix> for Matrix {
 
 impl Matrix {
     pub fn new(height: usize, width: usize) -> Matrix {
-        Matrix {_height: height, _width: width, _value: vec![0.0; height * width]}
+        Matrix {_height: height, _width: width, _bound: height * width, _value: vec![0.0; height * width]}
     }
 
     pub fn new_init(height: usize, width: usize, data: Vec<f64>) -> Matrix {
-        Matrix {_height: height, _width: width, _value: data}
+        Matrix {_height: height, _width: width, _bound: height * width, _value: data}
     }
 
     pub fn access(&self, x: usize, y: usize) -> f64 {
@@ -92,18 +93,25 @@ impl Matrix {
     }
 
     pub fn add(&mut self, other: &Matrix) {
-        let bound = self._height * self._width;
-        for i in 0..bound {
+        for i in 0..self._bound {
             self._value[i] += other._value[i];
         }
     }
 
     pub fn sub(&mut self, other: &Matrix) {
-        let bound = self._height * self._width;
-        for i in 0..bound {
+        for i in 0..self._bound {
             self._value[i] -= other._value[i];
         }
+    }
 
+    pub fn transpose(&self) -> Matrix {
+        let mut new_matrix = Matrix::new(self._width, self._height);
+        for x in 0..self._width {
+            for y in 0..self._height {
+                new_matrix._value[x * self._height + y] = self._value[y * self._height + x];
+            }
+        }
+        new_matrix
     }
 
     pub fn to_string(&self) -> String {
