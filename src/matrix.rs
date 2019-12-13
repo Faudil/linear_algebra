@@ -125,4 +125,17 @@ impl Matrix {
         let a = self._value.clone();
         Matrix::new_init(self._height, self._width, a)
     }
+
+    pub fn map(&self, fun: (fn (f64) -> f64)) -> Matrix {
+        let mut new_matrix = self.clone();
+        new_matrix.apply_map(fun);
+        return new_matrix;
+    }
+
+    pub fn apply_map(& mut self, fun: (fn (f64) -> f64)) {
+        let len = self._value.len();
+        for i in 0..len {
+            self._value[i] = fun(self._value[i]);
+        }
+    }
 }
