@@ -12,7 +12,14 @@ pub struct Matrix {
 impl fmt::Debug for Matrix {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let str_list = self._value.iter().map(|&x| x.to_string()).collect::<Vec<String>>();
-        write!(f, "Matrix :: height = {} width = {}\n value = [{}]", self._height, self._width, str_list.join(", "))
+        write!(f, "{}", format!("Matrix :: height = {} width = {}\n value = [{}]", self._height, self._width, str_list.join(", ")))
+    }
+}
+
+impl fmt::Display for Matrix {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let str_list = self._value.iter().map(|&x| x.to_string()).collect::<Vec<String>>();
+        write!(f, "{}", format!("h = {} w = {} value = [{}]", self._height, self._width, str_list.join(", ")))
     }
 }
 
@@ -34,7 +41,7 @@ impl PartialEq for Matrix {
                 return false;
             }
         }
-        return true
+        true
     }
 }
 
@@ -112,11 +119,6 @@ impl Matrix {
             }
         }
         new_matrix
-    }
-
-    pub fn to_string(&self) -> String {
-        let str_list = self._value.iter().map(|&x| x.to_string()).collect::<Vec<String>>();
-        format!("h = {} w = {} value = [{}]", self._height, self._width, str_list.join(", "))
     }
 
     pub fn clone(&self) -> Matrix {

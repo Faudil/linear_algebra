@@ -1,0 +1,3 @@
+blacklisted-names = ["toto", "tata", "titi"]
+cognitive-complexity-threshold = 30
+#![deny(clippy::single_match, clippy::box_vec)]
